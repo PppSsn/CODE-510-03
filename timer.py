@@ -68,30 +68,29 @@ def start():
         update()
         running = True
 
-# pause function
+
 def pause():
     global running
     if running:
-        # cancel updating of time using after_cancel()
+
         stopwatch_label.after_cancel(update_time)
         running = False
 
-# reset function
 def reset():
     global running
     if running:
-        # cancel updating of time using after_cancel()
+
         stopwatch_label.after_cancel(update_time)
         running = False
-    # set variables back to zero
+
     global hours, minutes, seconds
     hours, minutes, seconds = 0, 0, 0
-    # set label back to zero
+
     stopwatch_label.config(text='00:00:00')
 
-# update stopwatch function
+
 def update():
-    # update seconds with (addition) compound assignment operator
+
     global hours, minutes, seconds
     seconds += 1
     if seconds == 60:
@@ -100,14 +99,13 @@ def update():
     if minutes == 60:
         hours += 1
         minutes = 0
-    # format time to include leading zeros
+
     hours_string = f'{hours}' if hours > 9 else f'0{hours}'
     minutes_string = f'{minutes}' if minutes > 9 else f'0{minutes}'
     seconds_string = f'{seconds}' if seconds > 9 else f'0{seconds}'
-    # update timer label after 1000 ms (1 second)
+
     stopwatch_label.config(text=hours_string + ':' + minutes_string + ':' + seconds_string)
-    # after each second (1000 milliseconds), call update function
-    # use update_time variable to cancel or pause the time using after_cancel
+
     global update_time
     update_time = stopwatch_label.after(1000, update)
 
@@ -138,7 +136,7 @@ botton1 = Button(root,text="เริ่ม",fg="white",bg="blue",width=20,heigh
 
 
 
-   # label to display time
+
 stopwatch_label = tk.Label(root,text='00:00:00', font=('Arial',70),bg="white",fg="black")
 stopwatch_label.place(x=15,y=350)
 
